@@ -29,7 +29,6 @@ class KeyboardService : InputMethodService() {
     private lateinit var pred3: TextView
     
     private var currentWord = ""
-    private var isUpdatingPrediction = false
 
     private val dictionary = listOf("the", "and", "you", "that", "was", "for", "are", "with", "his", "they", "this", "have", "from", "one", "had", "word", "but", "not", "what", "all", "were", "when", "your", "can", "said", "there", "use", "an", "each", "which", "she", "do", "how", "their", "if", "will", "up", "other", "about", "out", "many", "then", "them", "these", "so", "some", "her", "would", "make", "like", "him", "into", "time", "has", "look", "two", "more", "write", "go", "see", "number", "no", "way", "could", "people", "my", "than", "first", "water", "been", "call", "who", "oil", "its", "now", "find", "long", "down", "day", "did", "get", "come", "made", "may", "part")
 
@@ -145,7 +144,7 @@ class KeyboardService : InputMethodService() {
         row2.removeAllViews()
         row3.removeAllViews()
 
-        if (!isSymbols && currentLang == "EN" || currentLang == "FR") {
+        if (!isSymbols && (currentLang == "EN" || currentLang == "FR")) {
             for (i in 1..10) {
                 val num = if (i == 10) "0" else i.toString()
                 val btn = Button(this)
@@ -263,7 +262,7 @@ class KeyboardService : InputMethodService() {
     private fun selectPrediction(word: String) {
         if (word.isEmpty()) return
         val ic = currentInputConnection ?: return
-        val textBefore = ic.getTextBeforeCursor(currentWord.length, 0) ?: ""
+        val textBefore = ic.getTextBeforeCursor(currentWord.length, 0)?.toString() ?: ""
         if (textBefore.lowercase() == currentWord.lowercase()) {
             ic.deleteSurroundingText(currentWord.length, 0)
         }
