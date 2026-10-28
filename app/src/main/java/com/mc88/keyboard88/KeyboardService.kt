@@ -5,7 +5,6 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.LinearLayout
-import android.widget.TextView
 
 class KeyboardService : InputMethodService() {
 
@@ -80,7 +79,8 @@ class KeyboardService : InputMethodService() {
         view.findViewById<Button>(R.id.btnEnter).setOnClickListener {
             val ic = currentInputConnection
             if (ic != null) {
-                val action = currentInputEditorInfo?.imeOptions and EditorInfo.IME_MASK_ACTION
+                val imeOptions = currentInputEditorInfo?.imeOptions ?: 0
+                val action = imeOptions and EditorInfo.IME_MASK_ACTION
                 if (action == EditorInfo.IME_ACTION_NONE || action == EditorInfo.IME_ACTION_UNSPECIFIED) {
                     ic.commitText("\n", 1)
                 } else {
