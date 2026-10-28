@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">KEYBOARD88</string>
+    <string name="setup_instructions">To enable KEYBOARD88:\n\n1. Tap the button below.\n2. Turn on KEYBOARD88.\n3. Select it as your default keyboard.</string>
+    <string name="open_settings">Open Keyboard Settings</string>
+    <string name="switch_lang">🌐 Lang</string>
+    <string name="resize">⇕ Size</string>
+</resources>
